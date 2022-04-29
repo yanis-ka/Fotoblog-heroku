@@ -25,4 +25,5 @@ urlpatterns = [
         template_name = 'authentication/password_change_done.html'
         ),
         name='change_success'),
+    path('blog/', include('blog.urls'))
 ]
