@@ -24,3 +24,22 @@ class SignUpPageView(View):
             return redirect(settings.LOGIN_REDIRECT_URL)
         context = {'form': form,}
         return render(request, self.template_name, context)
+
+
+class UploadProfilePhotoView(LoginRequiredMixin, View):
+
+    template_name = 'authentication/change_profile_photo.html'
+    form_class = forms.UploadProfilePhotoForm
+
+    def get(self, request):
+        form = self.form_class(instance=request.user)
+        context = {'form': form,}
+        return render(request, self.template_name, context)
+    
+    def post(self, request):
+        form = self.form_class(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        context = {'form': form,}
+        return render(request, self.template_name, context)

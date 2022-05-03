@@ -25,5 +25,7 @@ urlpatterns = [
         template_name = 'authentication/password_change_done.html'
         ),
         name='change_success'),
-    path('blog/', include('blog.urls'))
+    path('profile-photo/upload', authentication.views.UploadProfilePhotoView.as_view(),
+        name='upload_profile_photo'),
+    path('blog/', include('blog.urls')),
 ]

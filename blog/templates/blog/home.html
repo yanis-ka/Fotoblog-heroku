@@ -1,4 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    <p>Vous êtes connecté !</p>
+    <h2>Photos</h2>
+    <div class="grid-container">
+        {% for photo in photos %}
+        <div class="post">
+            <p>{{ photo.caption }}</p>
+            <img class="photo" src="{{ photo.image.url }}">
+        </div>
+        {% endfor %}
+    </div>
+
 {% endblock content %}
