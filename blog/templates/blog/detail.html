@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>{{ blog.title }}</h2>
+    <img class="blog-view" src="{{ blog.photo.image.url }}">
+    <p class="author">[{{ blog.contributors.first }}]</p>
+    <p>{{ blog.photo.caption }}</p>
+    <p>{{ blog.content }}</p>
+    
+{% endblock content %}
+    
+    
+    {% if perms.blog.change_blog and perms.blog.delete_blog %}
+        <p><a href="{% url 'edit_blog' blog.id %}">Modifier le post</a></p>
+    {% endif %}

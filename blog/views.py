@@ -12,7 +12,11 @@ from cloudinary.forms import cl_init_js_callbacks
 @login_required
 def home(request):
     photos = models.Photo.objects.all()
-    context={'photos': photos}
+    blogs = models.Blog.objects.all()
+    context={
+            'photos': photos,
+            'blogs': blogs,
+            }
     return render(request, 'blog/home.html', context)
 
 
@@ -69,4 +73,14 @@ class BlogAndPhotoUploadView(LoginRequiredMixin, View):
             'blog_form': blog_form,
             'photo_form': photo_form,
         }
+        return render(request, self.template_name, context)
+
+
+class BlogDetailView(LoginRequiredMixin,View):
+
+    template_name = 'blog/detail.html'    
+
+    def get(self, request, blog_id):
+        blog = get_object_or_404(models.Blog, id=blog_id)
+        context = {'blog': blog, }
         return render(request, self.template_name, context)
