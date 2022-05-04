@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+
+{% block content %}
+    <h2>Télécharger plusieurs photos</h2>
+    <form method="post" enctype="multipart/form-data">
+        {{ formset.management_form }}
+        {% csrf_token %}
+        {% for form in formset %}
+            {{ form.as_p }}
+        {% endfor %}
+        <button type="submit" >Publier</button>
+    </form>
+{% endblock content %}
