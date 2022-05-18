@@ -34,7 +34,7 @@ class DeleteBlogForm(forms.Form):
 
 
 
-# class FollowUserForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ['follows']
+class FollowUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['follows']

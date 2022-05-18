@@ -1,24 +1,35 @@
 {% extends 'base.html' %}
+{% load blog_extras %}
+
 {% block content %}
-    <h2>Photos</h2>
+
+<h2>Votre Flux</h2>
     <div class="grid-container">
-        {% for photo in photos %}
-        <div class="post">
-            <p>{{ photo.caption }}</p>
-            <img class="photo" src="{{ photo.image.url }}">
-        </div>
+        {% for instance in page_obj %}
+            {% if instance|model_type == 'Blog' %}
+                {% include 'blog/partials/blog_snippet.html' with blog=instance %}
+            {% elif instance|model_type == 'Photo' %}
+                {% include 'blog/partials/photo_snippet.html' with photo=instance %}                
+            {% endif %}
         {% endfor %}
     </div>
-    ...
-    <h2>Blog</h2>
-    <div class="grid-container">
-        {% for blog in blogs %}
-            <div class="post">
-                <a href="{% url 'blog_detail' blog.id %}">
-                    <h4>Billet : {{ blog.title }}</h4>
-                    <img src="{{ blog.photo.image.url }}">
-                </a>
-            </div>
-        {% endfor %}
+    <div class="pagination">
+        <span>
+            {% if page_obj.has_previous %}
+                <a href="?page=1"><< première </a>
+                <a href="?page={{ page_obj.previous_page_number }}">< précédente </a>
+            {% endif %}
+
+            <span>
+                Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.
+            </span>
+        
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">suivante ></a>
+                
+                <a href="?page={{ page_obj.paginator.num_pages }}">dernière >></a>
+            {% endif %}
+        </span>
     </div>
-{% endblock content %}
+
+    {% endblock content %}

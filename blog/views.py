@@ -11,11 +11,28 @@ from cloudinary.forms import cl_init_js_callbacks
 
 @login_required
 def home(request):
-    photos = models.Photo.objects.all()
-    blogs = models.Blog.objects.all()
-    context={
-            'photos': photos,
-            'blogs': blogs,
+    blogs = models.Blog.objects.filter(
+        Q(contributors__in=request.user.follows.all()) | Q(starred=True))
+    photos = models.Photo.objects.filter(
+        uploader__in=request.user.follows.all()).exclude(
+        blog__in=blogs
+        )
+    # blogs = blogs.order_by('-date_created')
+    blogs_and_photos = sorted(
+        chain(blogs, photos),
+        key=lambda instance: instance.date_created,
+        reverse=True
+    )
+
+    paginator = Paginator(blogs_and_photos, 6)
+    
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = { 
+                'photos': photos,
+                'blogs': blogs, 
+                'page_obj': page_obj,
             }
     return render(request, 'blog/home.html', context)
 
@@ -65,9 +82,9 @@ class BlogAndPhotoUploadView(LoginRequiredMixin, PermissionRequiredMixin, View):
             photo.save()
             blog = blog_form.save(commit=False)
             blog.photo = photo
-            blog.author = request.user
+            # blog.author = request.user
             blog.save()
-            # blog.contributors.add(request.user, through_defaults={'contribution': 'Auteur principal'})
+            blog.contributors.add(request.user, through_defaults={'contribution': 'Auteur principal'})
             return redirect('home')
         context = {
             'blog_form': blog_form,
@@ -152,3 +169,38 @@ class CreateMultiplePhotos(LoginRequiredMixin, PermissionRequiredMixin, View):
 
         context = {'formset': formset,}
         return render(request, self.template_name, context)
+
+
+class FollowUsersView(LoginRequiredMixin ,View):
+
+    template_name = 'blog/follow_user_form.html'
+    form_class = forms.FollowUserForm
+
+    def get(self, request):
+        form = self.form_class(instance=request.user)
+        context = {'form': form}
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        form = self.form_class(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        context = {'form': form}
+        return render(request, self.template_name, context)
+
+
+class PhotoFeedView(LoginRequiredMixin, View):
+
+    template_name = 'blog/photo_feed.html'
+
+    def get(self, request):
+        photos = models.Photo.objects.filter(
+            uploader__in=request.user.follows.all()).order_by('-date_created')
+            
+        paginator = Paginator(photos, 6)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {'page_obj': page_obj}
+        return render(request, self.template_name, context)
+    

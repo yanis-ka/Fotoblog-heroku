@@ -1,4 +1,6 @@
 from pathlib import Path
+import os
+import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -14,7 +16,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-an_l&sqc%2u8o)=o1%g#ga+o1xbdg@&-)irv$1knxg_y-6m5a2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+if os.environ.get('env') == 'PRODUCTION':
+    DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -41,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Fotoblog.urls'
@@ -72,7 +79,7 @@ WSGI_APPLICATION = 'Fotoblog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fotoblog2',
+        'NAME': 'fotoblog',
         'USER': 'yanis',
         'PASSWORD': '',
         'HOST': '',
@@ -137,3 +144,18 @@ cloudinary.config(
   api_secret = "pfwtvjKlEDPuecd2XNaglH0pWBM",
   secure = True
 )
+
+
+if os.environ.get('env') == 'PRODUCTION':
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    STATICFILES_DIRS = (
+        os.path.join(PROJECT_ROOT, 'static'),
+    )
+
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
