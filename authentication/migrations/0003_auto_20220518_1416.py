@@ -7,10 +7,10 @@ def assign_blog_permissions(apps, schema_migration):
     Group = apps.get_model('auth', 'Group')
     Permission = apps.get_model('auth', 'Permission')
 
-    add_blog = Permission.objects.get(codename='add_blog')
-    change_blog = Permission.objects.get(codename='change_blog')
-    delete_blog = Permission.objects.get(codename='delete_blog')
-    view_blog = Permission.objects.get(codename='view_blog')
+    add_blog = Permission.objects.get_or_create(codename='add_blog')
+    change_blog = Permission.objects.get_or_create(codename='change_blog')
+    delete_blog = Permission.objects.get_or_create(codename='delete_blog')
+    view_blog = Permission.objects.get_or_create(codename='view_blog')
 
     creators = Group.objects.get(name='creators')
     creators.permissions.add(add_blog)
