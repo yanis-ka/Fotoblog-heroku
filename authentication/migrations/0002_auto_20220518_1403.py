@@ -8,10 +8,10 @@ def create_groups(apps, schema_migration):
     Group = apps.get_model('auth', 'Group')
     Permission = apps.get_model('auth', 'Permission')
 
-    add_photo = Permission.objects.get(codename='add_photo')
-    change_photo = Permission.objects.get(codename='change_photo')
-    delete_photo = Permission.objects.get(codename='delete_photo')
-    view_photo = Permission.objects.get(codename='view_photo')
+    add_photo = Permission.objects.get_or_create(codename='add_photo')
+    change_photo = Permission.objects.get_or_create(codename='change_photo')
+    delete_photo = Permission.objects.get_or_create(codename='delete_photo')
+    view_photo = Permission.objects.get_or_create(codename='view_photo')
     
     creator_permissions = [
         add_photo,
@@ -45,3 +45,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(create_groups),
     ]
+
+
+
