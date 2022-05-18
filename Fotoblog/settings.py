@@ -22,7 +22,10 @@ if os.environ.get('env') == 'PRODUCTION':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+                    '127.0.0.1',
+                    'fotoblog-django-perm.herokuapp.com'
+                ]
 
 
 # Application definition
