@@ -27,6 +27,7 @@ ALLOWED_HOSTS = [
                     'fotoblog-django-perm.herokuapp.com'
                 ]
 
+CSRF_TRUSTED_ORIGINS = ["https://fotoblog-django-perm.herokuapp.com"]
 
 # Application definition
 
