@@ -24,7 +24,7 @@ else:
 
 ALLOWED_HOSTS = [
                     '127.0.0.1',
-                    'fotoblog-django-perm.herokuapp.com',
+                    'fotoblog-django-perm.herokuapp.com'
                 ]
 
 CSRF_TRUSTED_ORIGINS = ["https://fotoblog-django-perm.herokuapp.com"]
@@ -159,7 +159,7 @@ if os.environ.get('env') == 'PRODUCTION':
 
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
-    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
