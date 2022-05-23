@@ -24,7 +24,7 @@ else:
 
 ALLOWED_HOSTS = [
                     '127.0.0.1',
-                    'fotoblog-django-perm.herokuapp.com'
+                    'fotoblog-django-perm.herokuapp.com',
                 ]
 
 CSRF_TRUSTED_ORIGINS = ["https://fotoblog-django-perm.herokuapp.com"]
