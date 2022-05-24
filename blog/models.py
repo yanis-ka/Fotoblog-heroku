@@ -35,3 +35,4 @@ class BlogContributor(models.Model):
     
     class Meta:
         unique_together = ('contributor', 'blog')
+

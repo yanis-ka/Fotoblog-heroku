@@ -204,3 +204,4 @@ class PhotoFeedView(LoginRequiredMixin, View):
         context = {'page_obj': page_obj}
         return render(request, self.template_name, context)
     
+
