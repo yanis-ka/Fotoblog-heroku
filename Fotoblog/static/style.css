@@ -47,6 +47,7 @@ a:hover {
 
 .avatar {
     width: 80%;
+    height: 176px;
     border-radius: 50%;
     display: block;
     margin: auto;
