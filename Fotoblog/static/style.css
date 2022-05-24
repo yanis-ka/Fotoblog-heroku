@@ -3,8 +3,12 @@ html {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: underline;
     color: inherit;
+}
+
+a:hover {
+    text-decoration: underline dotted;
 }
 
 /* The sidebar menu */

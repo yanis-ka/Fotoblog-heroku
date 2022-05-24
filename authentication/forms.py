@@ -1,10 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
-from django.forms.widgets import PasswordInput, TextInput
+# from django.forms.widgets import PasswordInput, TextInput
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=63, label="Nom d'utilisateur", widget=TextInput(attrs={'placeholder': 'Démo'}))
+    username = forms.CharField(max_length=63, label="Nom d'utilisateur", widget=forms.TextInput(attrs={'placeholder': 'Démo'}))
     password = forms.CharField(max_length=63, widget=forms.PasswordInput(attrs={'placeholder': 'Démo'}), label="Mot de passe")
 
 
