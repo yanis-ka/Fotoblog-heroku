@@ -83,7 +83,7 @@ a:hover {
 
 }
 
-.post img {
+.post img:hover {
     box-shadow: 0 0 80px -10px rgba(40, 40, 40, 0.4);    
 }
 
