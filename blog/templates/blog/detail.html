@@ -8,7 +8,7 @@
     {% endif %}
     <img class="blog-view" src="{{ blog.photo.image.url }}">
     <br>
-    <p class="author btn btn-light text-center" disabled> Prise par:{{ blog.contributors.first }}</p>
+    <p class="author btn-light text-center" disabled> Prise par: <strong>{{ blog.contributors.first }}</strong></p>
     <p>{{ blog.photo.caption }}</p>
     <p>{{ blog.content }}</p>
     
