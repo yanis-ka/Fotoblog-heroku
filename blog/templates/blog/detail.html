@@ -4,10 +4,10 @@
 
     <h2>{{ blog.title }}</h2>
     {% if perms.blog.change_blog and perms.blog.delete_blog %}
-        <p><a href="{% url 'edit_blog' blog.id %}">Modifier le post</a></p>
+        <p><a class="link-dark btn btn-outline-secondary" href="{% url 'edit_blog' blog.id %}">Modifier le post</a></p>
     {% endif %}
     <img class="blog-view" src="{{ blog.photo.image.url }}">
-    <p class="author">[{{ blog.contributors.first }}]</p>
+    <p class="author btn btn-light" disabled>[{{ blog.contributors.first }}]</p>
     <p>{{ blog.photo.caption }}</p>
     <p>{{ blog.content }}</p>
     

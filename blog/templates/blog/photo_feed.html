@@ -3,26 +3,26 @@
 
 {% block content %}
 <h2>photofeed</h2>
-<div class="grid-container">
+<br>
+<br>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     {% for photo in page_obj %}
         {% include 'blog/partials/photo_snippet.html' %}                
     {% endfor %}
 </div>
 <div class="pagination">
-    <span>
-        {% if page_obj.has_previous %}
-            <a href="?page=1">« première</a>
-            <a href="?page={{ page_obj.previous_page_number }}">précédente</a>
-        {% endif %}
-    
+    <span class="text-center">
+            {% if page_obj.has_previous %}
+                <a href="?page=1"><< Première </a> 
+                <a href="?page={{ page_obj.previous_page_number }}">< Précédente </a> 
+            {% endif %} 
         <span>
             Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.
-
         </span>
+
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">suivante</a>
-            
-            <a href="?page={{ page_obj.paginator.num_pages }}">dernière »</a>
+            <a href="?page={{ page_obj.next_page_number }}">Suivante ></a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Dernière >></a>
         {% endif %}
     </span>
 </div>
