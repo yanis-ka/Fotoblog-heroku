@@ -1,7 +1,7 @@
 {% load blog_extras %}
 <div class="col">
     <div class="card shadow-sm">
-        <img src="{{ photo.image.url }}" width="100%" height="225">
+        <img class="rounded-top" src="{{ photo.image.url }}" width="100%" height="225">
         <div class="card-body">
             <h3 class="text-center">{{ photo.caption }}</h3>
             <p class="text-center"><strong>Prise par {% get_poster_display photo.uploader %}</strong></p>
