@@ -20,8 +20,8 @@ a:hover {
     color: white;
 }
 
-.my-color {
-    background-color: rgb(0, 44, 69);
+.sign-up-form{
+    width: 50%;
 }
 
 /* The sidebar menu */
