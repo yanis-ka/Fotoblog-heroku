@@ -7,8 +7,26 @@ a {
     color: inherit;
 }
 
+.text-navbar > h2 {
+    /* padding-left: 0; */
+    /* margin-left: 0; */
+}
+
 a:hover {
     text-decoration: underline dotted;
+}
+
+.side-fix {
+    height: 100vh;
+    position: fixed;
+}
+
+.text-navbar {
+    color: white;
+}
+
+.my-color {
+    background-color: rgb(0, 44, 69);
 }
 
 /* The sidebar menu */
@@ -43,13 +61,14 @@ a:hover {
 
 /* Style page content */
 .main {
-    margin-left: 220px; /* Same as the width of the sidebar */
+    margin-left: 280px; /* Same as the width of the sidebar */
     padding: 20px;
+    color: black;
 }
 
 .avatar {
-    width: 80%;
-    height: 176px;
+    width: 180px;
+    height: 190px;
     border-radius: 50%;
     display: block;
     margin: auto;

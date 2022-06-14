@@ -1,9 +1,14 @@
 {% load blog_extras %}
-<div class="post">
-    <a href="{% url 'blog_detail' instance.id %}">
-        <h4>Post : {{ blog.title }}</h4>
-        <img src="{{ blog.photo.image.url }}" width="450px" height="300">
-        <p><strong>Écrit par {{ blog.contributors.all|join:", " }}</strong></p>
-        <p>{{ blog.date_created|get_posted_at_display }}</p>
-    </a>
-</div>
+
+<a href="{% url 'blog_detail' instance.id %}" class="link-dark">
+    <div class="col">
+        <div class="card shadow-sm">
+            <img src="{{ blog.photo.image.url }}" width="100%" height="225">        
+            <div class="card-body">
+                <h3 class="text-center">{{ blog.title }}</h3>
+                <p class="text-center"><strong>Écrit par {{ blog.contributors.all|join:", " }}</strong></p>
+                <p class="text-center">{{ blog.date_created|get_posted_at_display }}</p>
+            </div>
+        </div>
+    </div>
+</a>

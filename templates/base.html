@@ -6,32 +6,94 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
         <title>Fotoblog</title>
     </head>
     <body>
-        <div class="sidebar">
-            <h1>FotoBlog</h1>
+        <div class="flex-shrink-0 p-3 side-fix bg-dark text-navbar" style="width: 280px;">
+            
+            <h3 class="text-center">FotoBlog</h3>
             {% if user.is_authenticated %}
-                <p>Salut, {{ user }} !</p>
+                <p class="text-center">Salut, {{ user }} !</p>
                 {% if user.profile_photo %}
                     <img class="avatar" src="{{ user.profile_photo.url }}">
                 {% else %}
                     <img class="avatar" src="{% static 'images/default_profile.png'%}">
                 {% endif %}
-                <p><a href="{% url 'home' %}">Fil d'actualité</a></p>
-                <p><a href="{% url 'photos' %}">Photos</a></p>
+                <hr>
+                <br>
+                
+            <ul class="list-unstyled ps-0">
+             
+                <li class="mb-1">
+                    <button class="btn btn-toggle btn-light d-inline-flex align-items-center rounded border-0 collapsed"
+                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                        Fils d'actualité
+                    </button>
+                    <div class="collapse show" id="home-collapse">
+                        <ul class="btn-toggle-nav btn-light list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'home' %}"
+                                    class="link-light d-inline-flex text-decoration-none rounded">Posts</a></li>
+                            <li><a href="{% url 'photos' %}"
+                                    class="link-light d-inline-flex text-decoration-none rounded">Photos</a></li>
+                        </ul>
+                    </div>
+                </li>
+    
+                <br>
+    
                 {% if perms.blog.add_photo and perms.blog.add_blog %}
-                    <p><a href="{% url 'blog_create' %}">Créer un post</a></p>
+                <li class="mb-1">
+                    <button class="btn btn-toggle btn-light d-inline-flex align-items-center rounded border-0 collapsed"
+                        data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                        Poster
+                    </button>
+                    <div class="collapse" id="dashboard-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'blog_create' %}"
+                                    class="link-light d-inline-flex text-decoration-none rounded">Un blog</a></li>
+                            <li><a href="{% url 'photo_upload' %}"
+                                    class="link-light d-inline-flex text-decoration-none rounded">Une photo</a></li>
+                            <li><a href="{% url 'create_multiple_photos' %}"
+                                    class="link-light d-inline-flex text-decoration-none rounded">Plusieurs photos</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <br>
                 {% endif %}
-                {% if perms.blog.add_photo %}
-                    <p><a href="{% url 'photo_upload' %}">Télécharger a Photo</a></p>
-                    <p><a href="{% url 'create_multiple_photos' %}">Télécharger plusieurs photos</a></p>
-                {% endif %}
-                <p><a href="{% url 'follow_users' %}">Suivre des utilisateurs</a></p>
-                <p><a href="{% url 'upload_profile_photo' %}">Changer la photo de profil</a></p>
-                <p><a href="{% url 'password_change' %}">Changer le mot de passe</a></p>
-                <p><a href="{% url 'logout' %}">Se déconnecter</a></p>
-            {% endif %}
+    
+                <li class="mb-1">
+                    <button class="btn btn-toggle btn-light d-inline-flex align-items-center rounded border-0 collapsed"
+                        data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                        Utilisateur
+                    </button>
+                    <div class="collapse" id="orders-collapse">
+                        <ul class="btn-toggle-nav btn-light list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'follow_users' %}"
+                                    class="link-light d-inline-flex text-decoration-none rounded">Suivre des
+                                    utilisateurs</a>
+                            </li>
+                            <li><a href="{% url 'upload_profile_photo' %}"
+                                    class="link-light d-inline-flex text-decoration-none rounded">Changer la photo de
+                                    profil</a>
+                            </li>
+                            <li><a href="{% url 'password_change' %}"
+                                    class="link-light d-inline-flex text-decoration-none rounded">Changer le mot de
+                                    passe</a>
+                            </li>
+                            <li><a href="{% url 'logout' %}"
+                                    class="link-light d-inline-flex text-decoration-none rounded">Se
+                                    déconnecter</a></li>
+                        </ul>
+
+                    </div>
+                    {% endif %}
+            </ul>
         </div>
         <div class="main">
             {% block content %}{% endblock content %}

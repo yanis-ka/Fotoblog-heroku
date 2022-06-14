@@ -4,7 +4,7 @@
 {% block content %}
 
 <h2>Votre Flux</h2>
-    <div class="grid-container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for instance in page_obj %}
             {% if instance|model_type == 'Blog' %}
                 {% include 'blog/partials/blog_snippet.html' with blog=instance %}
