@@ -20,19 +20,12 @@ class SignUpForm(UserCreationForm):
         super(SignUpForm, self).__init__(*args, **kwargs)
         
         self.fields['username'].widget.attrs['class'] = 'form-control'
-        # self.fields['username'].widget.attrs['id'] = "floatingInput"
-
         self.fields['email'].widget.attrs['class'] = 'form-control'
-        # self.fields['email'].widget.attrs['id'] = "floatingInput"
-
+        self.fields['password1'].widget.attrs['class'] = 'form-control'
+        self.fields['password2'].widget.attrs['class'] = 'form-control'
         self.fields['first_name'].widget.attrs['class'] = 'form-control'
-        # self.fields['first_name'].widget.attrs['id'] = "floatingInput"
-
         self.fields['last_name'].widget.attrs['class'] = 'form-control'
-        # self.fields['last_name'].widget.attrs['id'] = "floatingInput"
-
         self.fields['role'].widget.attrs['class'] = 'form-select'
-        # self.fields['role'].widget.attrs['id'] = "floatingInput"
 
 
 
