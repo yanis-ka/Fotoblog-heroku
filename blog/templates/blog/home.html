@@ -4,32 +4,32 @@
 {% block content %}
 
 <h2>Votre Flux</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for instance in page_obj %}
-            {% if instance|model_type == 'Blog' %}
-                {% include 'blog/partials/blog_snippet.html' with blog=instance %}
-            {% elif instance|model_type == 'Photo' %}
-                {% include 'blog/partials/photo_snippet.html' with photo=instance %}                
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="pagination">
-        <span>
+<br>
+<br>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    {% for instance in page_obj %}
+        {% if instance|model_type == 'Blog' %}
+            {% include 'blog/partials/blog_snippet.html' with blog=instance %}
+        {% elif instance|model_type == 'Photo' %}
+            {% include 'blog/partials/photo_snippet.html' with photo=instance %}
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="pagination">
+    <span>
             {% if page_obj.has_previous %}
-                <a href="?page=1"><< première </a>
-                <a href="?page={{ page_obj.previous_page_number }}">< précédente </a>
-            {% endif %}
-
-            <span>
-                Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.
-            </span>
-        
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">suivante ></a>
-                
-                <a href="?page={{ page_obj.paginator.num_pages }}">dernière >></a>
-            {% endif %}
+                <a href="?page=1"><< Première </a> 
+                <a href="?page={{ page_obj.previous_page_number }}">< Précédente </a> 
+            {% endif %} 
+        <span>
+            Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.
         </span>
-    </div>
 
-    {% endblock content %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Suivante ></a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Dernière >></a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock content %}
