@@ -7,7 +7,8 @@
         <p><a class="link-dark btn btn-outline-secondary" href="{% url 'edit_blog' blog.id %}">Modifier le post</a></p>
     {% endif %}
     <img class="blog-view" src="{{ blog.photo.image.url }}">
-    <p class="author btn btn-light" disabled>[{{ blog.contributors.first }}]</p>
+    <br>
+    <p class="author btn btn-light text-center" disabled> Prise par:{{ blog.contributors.first }}</p>
     <p>{{ blog.photo.caption }}</p>
     <p>{{ blog.content }}</p>
     
