@@ -3,12 +3,13 @@
 {% block content %}
 
     <h2>{{ blog.title }}</h2>
+    <p class="author btn-light text-center" disabled> Prise par: <strong>{{ blog.contributors.first }}</strong></p>
+    
+    <img class="blog-view" src="{{ blog.photo.image.url }}">
+    <br>
     {% if perms.blog.change_blog and perms.blog.delete_blog %}
         <p><a class="link-dark btn btn-outline-secondary" href="{% url 'edit_blog' blog.id %}">Modifier le post</a></p>
     {% endif %}
-    <img class="blog-view" src="{{ blog.photo.image.url }}">
-    <br>
-    <p class="author btn-light text-center" disabled> Prise par: <strong>{{ blog.contributors.first }}</strong></p>
     <p>{{ blog.photo.caption }}</p>
     <p>{{ blog.content }}</p>
     

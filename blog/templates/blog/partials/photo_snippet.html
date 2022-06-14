@@ -3,7 +3,7 @@
     <div class="card shadow-sm">
         <img class="rounded-top" src="{{ photo.image.url }}" width="100%" height="225">
         <div class="card-body">
-            <h3 class="text-center">{{ photo.caption }}</h3>
+            <h5 class="text-center">{{ photo.caption }}</h5>
             <p class="text-center"><strong>Prise par {% get_poster_display photo.uploader %}</strong></p>
             <p class="text-center">{{ photo.date_created|get_posted_at_display }}</p>           
         </div>

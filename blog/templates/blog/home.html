@@ -18,16 +18,16 @@
 <div class="pagination">
     <span class="text-center">
             {% if page_obj.has_previous %}
-                <a href="?page=1"><< Première </a> 
-                <a href="?page={{ page_obj.previous_page_number }}">< Précédente </a> 
+                <a class="link-dark" href="?page=1"><< Première </a> 
+                <a class="link-dark" href="?page={{ page_obj.previous_page_number }}">< Précédente </a> 
             {% endif %} 
         <span>
             Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.
         </span>
 
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">Suivante ></a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">Dernière >></a>
+            <a class="link-dark" href="?page={{ page_obj.next_page_number }}">Suivante ></a>
+            <a class="link-dark" href="?page={{ page_obj.paginator.num_pages }}">Dernière >></a>
         {% endif %}
     </span>
 </div>
