@@ -31,7 +31,7 @@ class SignUpForm(UserCreationForm):
         self.fields['last_name'].widget.attrs['class'] = 'form-control'
         # self.fields['last_name'].widget.attrs['id'] = "floatingInput"
 
-        self.fields['role'].widget.attrs['class'] = 'form-control'
+        self.fields['role'].widget.attrs['class'] = 'form-select'
         # self.fields['role'].widget.attrs['id'] = "floatingInput"
 
 
