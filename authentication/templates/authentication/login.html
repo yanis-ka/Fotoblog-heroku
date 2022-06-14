@@ -1,21 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="démo">
-    <p>Ceci est une démo,</p>
-    <p>Vous pouvez vous connecter avec les identifiants suivants:</p>
-    <p>Nom d'utilisateur: Démo</p>
-    <p>Mot de passe: Démoblog1</p>
+<div class="text-center sign-form shadow p-4 mb-5 bg-body rounded">
+    <div class="démo">
+        <p>Ceci est une démo,</p>
+        <p>Vous pouvez vous connecter avec les identifiants suivants:</p>
+        <p>Nom d'utilisateur: Démo</p>
+        <p>Mot de passe: Démoblog1</p>
+    </div>
+    <main class="form-signin w-100 m-auto">
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit">Se connecter</button>
+        </form>
+    </main>
+
+    <p>Pas encore membre? <a href="{% url 'signup' %}">Inscrivez-vous maintenant!</a></p>
 </div>
-<form method="post">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <button type="submit">Se connecter</button>
-</form>
-
-
-<p>Pas encore membre? <a href="{% url 'signup' %}">Inscrivez-vous maintenant!</a></p>
-
 
 {% endblock content %}
 
